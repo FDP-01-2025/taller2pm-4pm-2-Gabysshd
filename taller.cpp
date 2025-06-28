@@ -60,7 +60,7 @@ void modificarEstudiante() {
         while (archivo >> e.nombre >> e.carnet >> e.edad){
             if (e.carnet == buscando){
     Estudiante estudianteNew;
-    cout << "Nuevo nombre (sin espacios): \n"
+    cout << "Nuevo nombre (sin espacios): \n";
     cin >> estudianteNew.nombre;
     cout << "Nuevo carnet: \n";
     cin >> estudianteNew.carnet;
