@@ -1,14 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/9lPju_Hi)
-# parte2
-✏️ Parte I – Completar una función del CRUD
-📝 Instrucciones:
-A continuación te damos un programa incompleto que implementa parte del CRUD de estudiantes usando estructuras (struct), funciones y manejo de archivos. Tu tarea es completar la función faltante correspondiente a una operación del CRUD, siguiendo las indicaciones.
-
-Puedes usar o no el manejo de archivos según lo desees, pero si lo implementas correctamente obtendrás **2 puntos extra**.
-
-🔧 Código proporcionado (incompleto):
-
-```cpp
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -33,7 +22,7 @@ void agregarEstudiante() {
     if (archivo.is_open()) {
         archivo << e.nombre << " " << e.carnet << " " << e.edad << endl;
         archivo.close();
-        cout << "Estudiante  correctamente.\n";
+        cout << "Estudiante agregado correctamente.\n";
     } else {
         cout << "Error al abrir el archivo.\n";
     }
@@ -57,17 +46,50 @@ void mostrarEstudiantes() {
     }
 }
 
-// -----------------------------
-// 👇 TU TAREA: Completa esta función (UPDATE)
 void modificarEstudiante() {
-    // Debes permitir actualizar nombre, carnet y/o edad
-    // de un estudiante identificado por su carnet.
-    // Puedes usar o no manejo de archivos.
-    // Si lo implementas con archivos correctamente, obtendrás **2 puntos extra**. 
+    ifstream archivo("estudiantes.txt");
+    ofstream temp("temp.txt");
+    Estudiante e;
+    string search; // camiba el nombre de esto
+    bool encontrado = false;
+
+    cout << "Ingresa el carnet a modificar \n";
+    cin >> search;
+
+    if (archivo.is_open() && temp.is_open()){
+        while (archivo >> e.nombre >> e.carnet >> e.edad){
+            if (e.carnet == search){
+    Estudiante newStudent; // cambia el nombre de esto
+    cout << "Nuevo nombre (sin espacios): \n";
+    cin >> newStudent.nombre;
+    cout << "Nuevo carnet: \n";
+    cin >> newStudent.carnet;
+    cout << "Nueva edad: \n";
+    cin >> newStudent.edad;
+
+    temp << newStudent.nombre << " " << newStudent.carnet << " " << newStudent.edad << endl; //cambia el nombre y pones el que pongas arriba
+    encontrado= true; 
+    } else {
+    temp << e.nombre << " " << e.carnet << " " << e.edad << endl;
+    }
+    }
+    archivo.close();
+    temp.close();
+    remove("estudiantes.txt");
+    rename("temp.txt", "estudiantes.txt");
+
+    
+    if (encontrado)
+    cout << "Estudiante modificado correctamente.\n";
+    else
+    cout << "Carnet no encontrado.\n";
+    } else {
+    cout << "Error abriendo los archivos.\n";
+   }
 }
 // -----------------------------
 
-// Función para eliminar estudiante (DELETE) 
+// Función para eliminar estudiante (DELETE)
 void eliminarEstudiante() {
     ifstream archivo("estudiantes.txt");
     ofstream temp("temp.txt");
@@ -126,16 +148,3 @@ int main() {
 
     return 0;
 }
-```
-📌 Tu tarea:
-Completa la función modificarEstudiante() para que:
-
-Lea el carnet del estudiante a modificar.
-
-Permita ingresar los nuevos datos.
-
-Sustituya el registro correspondiente.
-
-Muestre un mensaje de confirmación o de error.
-
-Si usas archivos correctamente, obtendrás 2 puntos extra.
