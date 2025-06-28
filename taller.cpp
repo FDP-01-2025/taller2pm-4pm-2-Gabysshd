@@ -50,24 +50,24 @@ void modificarEstudiante() {
     ifstream archivo("estudiantes.txt");
     ofstream temp("temp.txt");
     Estudiante e;
-    string search; // camiba el nombre de esto
+    string buscando;
     bool encontrado = false;
 
     cout << "Ingresa el carnet a modificar \n";
-    cin >> search;
+    cin >> buscando;
 
     if (archivo.is_open() && temp.is_open()){
         while (archivo >> e.nombre >> e.carnet >> e.edad){
             if (e.carnet == search){
-    Estudiante newStudent; // cambia el nombre de esto
-    cout << "Nuevo nombre (sin espacios): \n";
-    cin >> newStudent.nombre;
+    Estudiante estudianteNew;
+    cout << "Nuevo nombre (sin espacios): \n"
+    cin >> estudianteNew.nombre;
     cout << "Nuevo carnet: \n";
-    cin >> newStudent.carnet;
+    cin >> estudianteNew.carnet;
     cout << "Nueva edad: \n";
-    cin >> newStudent.edad;
+    cin >> estudianteNew.edad;
 
-    temp << newStudent.nombre << " " << newStudent.carnet << " " << newStudent.edad << endl; //cambia el nombre y pones el que pongas arriba
+    temp << estudianteNew.nombre << " " << estudianteNew.carnet << " " << estudianteNew.edad << endl;
     encontrado= true; 
     } else {
     temp << e.nombre << " " << e.carnet << " " << e.edad << endl;
